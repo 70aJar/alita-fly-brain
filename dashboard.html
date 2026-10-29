@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fly Brain Fleet Dashboard — 20 Plays</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+  :root{--bg:#0b0e14;--card:#12161f;--border:#1f2733;--fg:#e6edf3;--muted:#8b98a5;
+        --acc:#4f8cff;--green:#34d399;--amber:#fbbf24;--red:#f87171;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--fg);font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding:24px}
+  h1{font-size:22px;margin-bottom:4px}
+  .sub{color:var(--muted);margin-bottom:20px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:16px;margin-top:20px}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px}
+  .card h2{font-size:14px;margin-bottom:12px;color:var(--acc);text-transform:uppercase;letter-spacing:.5px}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--border)}
+  th{color:var(--muted);font-weight:500}
+  .green{color:var(--green)} .amber{color:var(--amber)} .red{color:var(--red)}
+  .tier{display:inline-block;padding:1px 8px;border-radius:4px;font-size:11px;font-weight:600}
+  .tier.a{background:rgba(52,211,153,.15);color:var(--green)}
+  .tier.b{background:rgba(251,191,36,.15);color:var(--amber)}
+  .tier.c{background:rgba(139,152,165,.15);color:var(--muted)}
+  .badge{display:inline-block;padding:1px 6px;border-radius:4px;font-size:11px;background:rgba(79,140,255,.15);color:var(--acc)}
+  .done{background:rgba(52,211,153,.15);color:var(--green)}
+</style>
+</head>
+<body>
+  <h1>🪰 Fly Brain (MaleCNS v1.0) — Fleet Plays Dashboard</h1>
+  <div class="sub">166,700 neurons · 25.6M connections · Janelia+Google+Cambridge · CC BY 4.0 · Sep 16 2026</div>
+
+  <div class="grid">
+    <div class="card">
+      <h2>Hardware we verified (FRIDAY M5 Max)</h2>
+      <canvas id="perfChart" height="180"></canvas>
+    </div>
+    <div class="card">
+      <h2>Looming detection — reservoir readout (Task 1)</h2>
+      <canvas id="aucChart" height="180"></canvas>
+    </div>
+    <div class="card">
+      <h2>Fly vs LLM race (Task 3)</h2>
+      <canvas id="raceChart" height="180"></canvas>
+    </div>
+    <div class="card">
+      <h2>Threat-sense calibration (Task 4)</h2>
+      <canvas id="threatChart" height="180"></canvas>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:20px">
+    <h2>The 20 plays — ranked by fleet leverage</h2>
+    <table>
+      <thead><tr><th>#</th><th>Play</th><th>Tier</th><th>Status</th><th>Node</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Reservoir readout (looming → MBON, AUC .925)</td><td><span class="tier a">A</span></td><td><span class="badge done">DONE ✅</span></td><td>FRIDAY</td></tr>
+        <tr><td>2</td><td>Hearth fly threat-sense (graded reflex)</td><td><span class="tier a">A</span></td><td><span class="badge done">DONE ✅</span></td><td>FRIDAY</td></tr>
+        <tr><td>3</td><td>Fly vs LLM race (reflex vs classifier)</td><td><span class="tier a">A</span></td><td><span class="badge done">DONE ✅</span></td><td>FRIDAY</td></tr>
+        <tr><td>4</td><td>DOOMFLY on Desktop RTX 5060</td><td><span class="tier a">A</span></td><td>QUEUED — Lahore</td><td>Desktop</td></tr>
+        <tr><td>5</td><td>Color/shape/numerosity benchmark suite — <b>null result</b></td><td><span class="tier a">A</span></td><td>DONE ✅ (no signal)</td><td>FRIDAY</td></tr>
+        <tr><td>6</td><td>Neuroevolution (NEAT) over fixed graph</td><td><span class="tier a">A</span></td><td>Next up</td><td>FRIDAY</td></tr>
+        <tr><td>7</td><td>Olfactory discrimination reservoir (AL→MB)</td><td><span class="tier a">A</span></td><td>Planned</td><td>FRIDAY</td></tr>
+        <tr><td>8</td><td>Vision end-to-end (Eyes→medulla→lobula→DN)</td><td><span class="tier a">A</span></td><td>Planned</td><td>FRIDAY</td></tr>
+        <tr><td>9</td><td>ALITA architecture inspiration (sparse spiking ref)</td><td><span class="tier b">B</span></td><td>Research</td><td>FRIDAY</td></tr>
+        <tr><td>10</td><td>Spike-trace sensory states → Hearth prompts</td><td><span class="tier b">B</span></td><td>Partial (Task 2)</td><td>FRIDAY</td></tr>
+        <tr><td>11</td><td>Effectome-style lesion studies</td><td><span class="tier b">B</span></td><td>Planned</td><td>FRIDAY</td></tr>
+        <tr><td>12</td><td>Camera → fly visual neurons → threat flash</td><td><span class="tier b">B</span></td><td>Planned</td><td>FRIDAY</td></tr>
+        <tr><td>13</td><td>Batch=8 multi-fly evolution</td><td><span class="tier b">B</span></td><td>Planned</td><td>FRIDAY</td></tr>
+        <tr><td>14</td><td>Always-on fly ambient sensing (357× realtime)</td><td><span class="tier b">B</span></td><td>Planned</td><td>FRIDAY</td></tr>
+        <tr><td>15</td><td>Male-vs-female connectome comparison (BANC)</td><td><span class="tier c">C</span></td><td>Wait for BANC</td><td>FRIDAY</td></tr>
+        <tr><td>16</td><td>Export readout as tiny local net</td><td><span class="tier c">C</span></td><td>Planned</td><td>FRIDAY</td></tr>
+        <tr><td>17</td><td>Mushroom-body classical conditioning demo</td><td><span class="tier c">C</span></td><td>Planned</td><td>FRIDAY</td></tr>
+        <tr><td>18</td><td>Central-complex navigation (fly compass)</td><td><span class="tier c">C</span></td><td>Planned</td><td>Pi/ESP32</td></tr>
+        <tr><td>19</td><td>Swarm fly lab (N flies, escape-latency stats)</td><td><span class="tier c">C</span></td><td>Planned</td><td>FRIDAY</td></tr>
+        <tr><td>20</td><td>Graph analytics on 25.6M edges (gortex-style)</td><td><span class="tier c">C</span></td><td>Planned</td><td>FRIDAY</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+<script>
+const gridColor='rgba(139,152,165,.25)', fg='#e6edf3', muted='#8b98a5';
+Chart.defaults.color=muted; Chart.defaults.borderColor=gridColor;
+
+new Chart(document.getElementById('perfChart'),{type:'bar',data:{
+  labels:['Step time (ms)','Realtime ratio (×)'],
+  datasets:[{data:[2.8,357],backgroundColor:['#4f8cff','#34d399'],borderRadius:6}]
+},options:{indexAxis:'y',scales:{x:{beginAtZero:true}},plugins:{legend:{display:false},tooltip:{callbacks:{label:(c)=>c.parsed.x}}},maintainAspectRatio:true}});
+
+new Chart(document.getElementById('aucChart'),{type:'bar',data:{
+  labels:['40 trials (marginal)','80 trials (discriminates)'],
+  datasets:[{label:'5-fold CV AUC',data:[0.738,0.925],backgroundColor:['#fbbf24','#34d399'],borderRadius:6}]
+},options:{scales:{y:{min:0.5,max:1}},plugins:{legend:{display:false},tooltip:{callbacks:{label:(c)=>c.parsed.y.toFixed(3)}}},maintainAspectRatio:true}});
+
+new Chart(document.getElementById('raceChart'),{type:'bar',data:{
+  labels:['Accuracy %','Mean latency (ms)'],
+  datasets:[
+    {label:'Fly (reflex)',data:[61,51],backgroundColor:'#4f8cff',borderRadius:6},
+    {label:'LLM (Gemma-4 Heretic)',data:[100,477],backgroundColor:'#34d399',borderRadius:6}
+  ]
+},options:{indexAxis:'y',scales:{x:{beginAtZero:true}},plugins:{legend:{position:'top'}},maintainAspectRatio:true}});
+
+new Chart(document.getElementById('threatChart'),{type:'bar',data:{
+  labels:['quiet 0.1','moderate 0.5','imminent 0.9'],
+  datasets:[{label:'fire rate %',data:[0,100,100],backgroundColor:['#8b98a5','#fbbf24','#f87171'],borderRadius:6}]
+},options:{scales:{y:{max:100}},plugins:{legend:{display:false}},maintainAspectRatio:true}});
+</script>
+</body>
+</html>

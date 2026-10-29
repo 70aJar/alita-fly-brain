@@ -1,0 +1,48 @@
+{
+ "play": 5,
+ "version": 2,
+ "brain": "MaleCNS v1.0 (166,700 neurons)",
+ "readout": {
+  "kenyon_types": 12,
+  "mbon_types": 36,
+  "descending_groups": 12
+ },
+ "protocol": {
+  "steps_blank": 15,
+  "steps_object": 45,
+  "trials_per_class": 60,
+  "folds": 5
+ },
+ "seed": 20261030,
+ "seconds": 90.6,
+ "note": "v1 drove static luminance and read 115 features; all tasks were at/below chance. v2 adds an onset transient and a Kenyon-cell readout.",
+ "results": [
+  {
+   "task": "numerosity",
+   "cv_accuracy": 0.5417,
+   "cv_sd": 0.0833,
+   "majority_baseline": 0.5333,
+   "features": 4179,
+   "trials": 120,
+   "above_baseline": true
+  },
+  {
+   "task": "width",
+   "cv_accuracy": 0.5,
+   "cv_sd": 0.0527,
+   "majority_baseline": 0.5333,
+   "features": 4179,
+   "trials": 120,
+   "above_baseline": false
+  },
+  {
+   "task": "side",
+   "cv_accuracy": 0.5583,
+   "cv_sd": 0.0425,
+   "majority_baseline": 0.5333,
+   "features": 4179,
+   "trials": 120,
+   "above_baseline": true
+  }
+ ]
+}

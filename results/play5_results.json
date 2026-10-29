@@ -1,0 +1,37 @@
+{
+ "play": 5,
+ "brain": "MaleCNS v1.0 (166,700 neurons)",
+ "steps_per_trial": 80,
+ "trials_per_class": 40,
+ "seed": 20261030,
+ "seconds": 82.4,
+ "results": [
+  {
+   "task": "numerosity",
+   "accuracy": 0.5625,
+   "chance": 0.625,
+   "n_train": 64,
+   "n_test": 16,
+   "features": 115,
+   "above_chance": false
+  },
+  {
+   "task": "width",
+   "accuracy": 0.4375,
+   "chance": 0.5,
+   "n_train": 64,
+   "n_test": 16,
+   "features": 115,
+   "above_chance": false
+  },
+  {
+   "task": "side",
+   "accuracy": 0.375,
+   "chance": 0.625,
+   "n_train": 64,
+   "n_test": 16,
+   "features": 115,
+   "above_chance": false
+  }
+ ]
+}
