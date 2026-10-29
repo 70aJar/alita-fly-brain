@@ -1,0 +1,29 @@
+{
+ "play": 8,
+ "brain": "MaleCNS v1.0 (166,700 neurons)",
+ "pathway": "FeatureDetectors (LPLC2/LC4/LC1/LC10a) -> connectome -> MBON + descending",
+ "protocol": {
+  "frames": 40,
+  "trials_per_condition": 40,
+  "seed": 20261030
+ },
+ "A_looming_detection": {
+  "accuracy": 0.625,
+  "auc": 0.95,
+  "chance": 0.5,
+  "n_test": 16
+ },
+ "B_graded_threat": {
+  "r2": -0.67,
+  "spearman": 0.7923,
+  "levels": [
+   0.0,
+   0.25,
+   0.5,
+   0.75,
+   1.0
+  ],
+  "n_test": 40
+ },
+ "seconds": 23.2
+}

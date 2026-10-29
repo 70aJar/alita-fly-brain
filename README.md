@@ -31,7 +31,9 @@ came out of a run in `results/`; nothing is illustrative.
 | 4 | DOOMFLY on Desktop RTX 5060 | queued (needs the Windows/RTX node) |
 | 5 | Colour/shape/numerosity benchmark suite | **DONE — null result (below)** |
 | 6 | Neuroevolution (NEAT) over fixed graph | next up |
-| 7–20 | olfactory, end-to-end vision, lesion studies, camera loop, swarm, graph analytics… | planned |
+| 7 | Olfactory discrimination reservoir (AL→MB) | planned |
+| 8 | Vision end-to-end (feature-detector → descending) | **DONE** — looming AUC 0.950, threat ρ 0.79 |
+| 9–20 | ALITA inspiration, lesion studies, camera loop, swarm, graph analytics… | planned |
 
 ## Play 5 — visual feature discrimination: a measured null
 
@@ -79,6 +81,48 @@ descending neurons), not through raw luminance. The likely explanation is that o
 the retina at a level the model does not propagate to the readout we sampled — not that the
 circuit lacks the computation. Reproducing play 1's pathway for these stimuli is the obvious
 next experiment (play 8, end-to-end vision).
+
+## Play 8 — vision end-to-end through the feature-detector pathway
+
+Play 5 showed raw luminance carries no decodable visual feature. Play 1 had reached
+AUC 0.925 on looming, but *through the feature detectors*. Play 8 tests that same pathway
+directly and asks whether it carries **graded** threat, not just a binary loom.
+
+**Method.** `FeatureDetectors.inject()` drives the identified looming/escape neurons
+(LPLC2 = looming, LC4 = fast looming/escape, LC1 = small approaching object, LC10a = chase);
+everything downstream — MBONs and the 8 descending-output groups — is the real connectome.
+40 frames per trial, 40 trials per condition, readout on MBON + descending features.
+
+### A. Looming detection — approaching vs receding object
+
+| Metric | Value |
+|---|---|
+| AUC | **0.950** |
+| Accuracy | 0.625 (chance 0.5) |
+| Test trials | 16 |
+
+The AUC **reproduces play 1's 0.925 on the same pathway** — the looming signal is genuinely
+there when the stimulus enters through the feature detectors rather than the retina. Accuracy
+is far weaker than the AUC because the readout's decision threshold was not calibrated; with
+16 test trials one wrong call moves accuracy by 6 points. The AUC is the figure to trust.
+
+### B. Graded threat — five levels (0, .25, .5, .75, 1)
+
+| Metric | Value |
+|---|---|
+| Spearman ρ | **0.792** |
+| R² (ridge, held-out) | **−0.670** |
+
+Read together these say something specific: **the pathway carries the *order* of threat but not
+a calibrated magnitude.** Rank correlation of 0.79 across five levels means higher threat really
+does produce a higher readout; a negative R² means the linear scale learned on the training split
+does not transfer — the mapping is monotonic but distorted, so a single linear fit is the wrong
+model. A calibrated readout here would need a monotone or ordinal fit, not least squares.
+
+**Why this matters for play 5's null:** it isolates the cause. The connectome does expose these
+visual quantities — but only through the feature-detector front end the package provides, not
+through raw photoreceptor luminance. The null in play 5 was a property of the stimulation path,
+not evidence that the circuit lacks the computation.
 
 ## Reproduce
 
